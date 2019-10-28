@@ -1,5 +1,8 @@
 {
   "dependencies": {
+    "koa": "^2.11.0",
+    "koa-body": "^4.1.1",
+    "koa-log4": "^2.3.2",
     "tesseract.js": "^1.0.19"
   }
 }
