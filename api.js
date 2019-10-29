@@ -43,7 +43,7 @@ app.use(async ctx => {
 // 呼叫Tesseract，分析图片，取得排队数字
 function getQueueNum(filePath){
   return new Promise((resolve, reject) => {
-    Tesseract.recognize(filePath, 'chi_sim', {tessedit_char_whitelist: '0123456789', tessedit_pageseg_mode: '7'})
+    Tesseract.recognize(filePath, 'eng', {tessedit_char_whitelist: '0123456789', tessedit_pageseg_mode: '7'})
       .progress(function  (p) { console.log('progress', p)  })
       .catch(err => console.error(err))
       .then(function (result) {
@@ -54,10 +54,10 @@ function getQueueNum(filePath){
 //清理及取得正确排队数字
 function cleanQueueNum(queueNum){
   const cleanNum = queueNum.replace(/ /g, '').trim();
-  const regax = /([0-9]+)./;
+  const regax = /([0-9]+)/g;
   const haveNum = cleanNum.match(regax);
   if(haveNum){
-    const number = regax.exec(cleanNum)[2];
+    const number = regax.exec(cleanNum)[1];
     return number;
   }
 }
